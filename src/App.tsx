@@ -1,16 +1,53 @@
 import React from "react";
 import "./App.css";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 function App(): JSX.Element {
     return (
-        <div className="App">
-            <header className="App-header">
-                UD CISC275 with React Hooks and TypeScript
-            </header>
-            <p>
-                Edit <code>src/App.tsx</code> and save. This page will
-                automatically reload. Brandon Nauta. Hello World
-            </p>
+        <div>
+            <div className="App">
+                <header className="App-header">
+                    Hello World
+                    <br /> Author: Brandon Nauta
+                    <br /> Class: CISC275
+                </header>
+            </div>
+            <h1 className="App-welcomeHeader"> Welcome to my Website! </h1>
+            <div>
+                <Container className="App-columns">
+                    <Row>
+                        <Col className="App-columnLeft">
+                            <p style={{ fontSize: "30px" }}>
+                                <b>Favorite Videogame Series:</b>
+                            </p>
+                            <img
+                                src={require("./assets/images/Animal-Crossing-Logo.png")}
+                                height="50%"
+                                width="85%"
+                                alt="A picture of the Animal Crossing logo"
+                            />
+                            <p style={{ fontSize: "25px" }}>
+                                <b>Why is it my favorite?</b>
+                            </p>
+                            <ul className="App-list">
+                                <li> It is very relaxing </li>
+                                <li> I love the progression </li>
+                                <li> And it is very fun </li>
+                            </ul>
+                            <div className="App-rectangle1"></div>
+                        </Col>
+                        <Col className="App-columnRight">
+                            <p style={{ fontSize: "30px" }}>
+                                <b>Funny Button:</b>
+                            </p>
+                            <Button onClick={() => console.log("Hello World!")}>
+                                Log Hello World
+                            </Button>
+                            <div className="App-rectangle2"></div>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         </div>
     );
 }

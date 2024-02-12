@@ -15,14 +15,59 @@
 
 .App-header {
     width: 100%;
-    background-color: #282c34;
-    min-height: 40vh;
+    background-color: #84adff;
+    min-height: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
+    font-family: "Monaco", monospace;
     color: white;
+}
+
+.App-welcomeHeader {
+    text-align: center;
+    background-color: rgb(176, 208, 238);
+    padding: 10px;
+}
+
+.App-columns {
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+.App-columnLeft {
+    height: 70vh;
+    background-color: #7189bb;
+}
+
+.App-columnRight {
+    background-color: #5f77a8;
+}
+
+.App-list {
+    display: inline-block;
+    font-size: 20px;
+}
+
+.App-rectangle1 {
+    position: fixed;
+    top: 85%;
+    left: 20%;
+    width: 20%;
+    height: 10%;
+    background-color: red;
+}
+
+.App-rectangle2 {
+    position: fixed;
+    top: 85%;
+    right: 20%;
+    width: 20%;
+    height: 10%;
+    background-color: red;
 }
 
 .App-link {

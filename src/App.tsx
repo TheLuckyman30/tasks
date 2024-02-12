@@ -22,11 +22,10 @@ function App(): JSX.Element {
                             </p>
                             <img
                                 src={require("./assets/images/Animal-Crossing-Logo.png")}
-                                height="50%"
-                                width="85%"
+                                className="App-image"
                                 alt="A picture of the Animal Crossing logo"
                             />
-                            <p style={{ fontSize: "25px" }}>
+                            <p className="App-listHeader">
                                 <b>Why is it my favorite?</b>
                             </p>
                             <ul className="App-list">
@@ -34,7 +33,7 @@ function App(): JSX.Element {
                                 <li> I love the progression </li>
                                 <li> And it is very fun </li>
                             </ul>
-                            <div className="App-rectangle1"></div>
+                            <div className="App-rectangles"></div>
                         </Col>
                         <Col className="App-columnRight">
                             <p style={{ fontSize: "30px" }}>
@@ -43,7 +42,7 @@ function App(): JSX.Element {
                             <Button onClick={() => console.log("Hello World!")}>
                                 Log Hello World
                             </Button>
-                            <div className="App-rectangle2"></div>
+                            <div className="App-rectangles"></div>
                         </Col>
                     </Row>
                 </Container>

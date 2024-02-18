@@ -14,8 +14,11 @@ export function fahrenheitToCelius(temperature: number): number {
 export function add3(first: number, second: number, third: number): number {
     // eslint-disable-next-line @typescript-eslint/no-inferrable-types
     let sum: number = 0;
+    // eslint-disable-next-line no-extra-parens
     first > 0 ? (sum += first) : null;
+    // eslint-disable-next-line no-extra-parens
     second > 0 ? (sum += second) : null;
+    // eslint-disable-next-line no-extra-parens
     third > 0 ? (sum += third) : null;
     return sum;
 }

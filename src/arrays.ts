@@ -40,7 +40,12 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    const removedSigns = amounts.map((amount: string): string =>
+        amount[0] === "$" ? amount.replace(amount[0], "") : amount
+    );
+    return removedSigns.map((number: string): number =>
+        !Number.isNaN(Number(number)) ? Number(number) : 0
+    );
 };
 
 /**
@@ -91,7 +96,23 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    const sum = addends
+        .reduce((total: number, num: number) => total + num, 0)
+        .toString();
+    if (!addends.length) {
+        return sum + "=" + "0";
+    }
+    return (
+        sum +
+        "=" +
+        addends.reduce(
+            (equation: string, num: number) =>
+                addends.indexOf(num) !== addends.length - 1
+                    ? equation + num.toString() + "+"
+                    : equation + num.toString(),
+            ""
+        )
+    );
 }
 
 /**

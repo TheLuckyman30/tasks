@@ -1,5 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
+import { makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -100,32 +101,14 @@ id,name,options,points,published
  */
 export function toCSV(questions: Question[]): string {
     let csv = "id,name,options,points,published\n";
-    csv += questions.reduce(
-        (fullList: string, question: Question) =>
-            questions.indexOf(question) !== questions.length - 1
-                ? fullList +
-                  question.id.toString() +
-                  "," +
-                  question.name +
-                  "," +
-                  question.options.length.toString() +
-                  "," +
-                  question.points.toString() +
-                  "," +
-                  question.published.toString() +
-                  "\n"
-                : fullList +
-                  question.id.toString() +
-                  "," +
-                  question.name +
-                  "," +
-                  question.options.length.toString() +
-                  "," +
-                  question.points.toString() +
-                  "," +
-                  question.published.toString(),
-        ""
-    );
+    csv += questions
+        .map(
+            (question: Question): string =>
+                `${question.id},${question.name},${question.options.length},${
+                    question.points
+                },${question.published ? "true" : "false"}`
+        )
+        .join("\n");
     return csv;
 }
 
@@ -135,7 +118,14 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    return questions.map(
+        (question: Question): Answer => ({
+            questionId: question.id,
+            text: "",
+            submitted: false,
+            correct: false
+        })
+    );
 }
 
 /***
@@ -143,7 +133,9 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return [];
+    return questions.map(
+        (question: Question): Question => ({ ...question, published: true })
+    );
 }
 
 /***
@@ -151,7 +143,12 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    const type: QuestionType = questions[0].type;
+    return questions.reduce(
+        (isSame: boolean, question: Question) =>
+            question.type === type ? (isSame = true) : (isSame = false),
+        false
+    );
 }
 
 /***
@@ -165,7 +162,7 @@ export function addNewQuestion(
     name: string,
     type: QuestionType
 ): Question[] {
-    return [];
+    return [...questions, makeBlankQuestion(id, name, type)];
 }
 
 /***
@@ -178,7 +175,12 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    return questions.map(
+        (question: Question): Question => ({
+            ...question,
+            name: targetId === question.id ? newName : question.name
+        })
+    );
 }
 
 /***
@@ -193,7 +195,17 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    return questions.map(
+        (question: Question): Question => ({
+            ...question,
+            type: targetId === question.id ? newQuestionType : question.type,
+            options:
+                newQuestionType === "short_answer_question" &&
+                targetId === question.id
+                    ? []
+                    : question.options
+        })
+    );
 }
 
 /**

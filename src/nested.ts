@@ -1,6 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
-import { makeBlankQuestion } from "./objects";
+import { duplicateQuestion, makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -143,6 +143,9 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
+    if (questions.length < 1) {
+        return true;
+    }
     const type: QuestionType = questions[0].type;
     return questions.reduce(
         (isSame: boolean, question: Question) =>
@@ -224,7 +227,28 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    return [];
+    return questions.map(
+        (question: Question): Question =>
+            editOptionHelper(question, targetId, targetOptionIndex, newOption)
+    );
+}
+
+export function editOptionHelper(
+    question: Question,
+    targetID: number,
+    targetOptionIndex: number,
+    newOption: string
+): Question {
+    if (question.id === targetID) {
+        if (targetOptionIndex > -1) {
+            const newQuestion = { ...question, options: [...question.options] };
+            newQuestion.options.splice(targetOptionIndex, 1, newOption);
+            return newQuestion;
+        } else {
+            return { ...question, options: [...question.options, newOption] };
+        }
+    }
+    return question;
 }
 
 /***
@@ -238,5 +262,18 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    const oldQuestion = questions.find(
+        (question: Question) => question.id === targetId
+    );
+    if (oldQuestion !== undefined) {
+        const indexOfNewQuestion = questions.indexOf(oldQuestion) + 1;
+        const addedDuplicate = [...questions];
+        addedDuplicate.splice(
+            indexOfNewQuestion,
+            0,
+            duplicateQuestion(newId, oldQuestion)
+        );
+        return addedDuplicate;
+    }
+    return questions;
 }

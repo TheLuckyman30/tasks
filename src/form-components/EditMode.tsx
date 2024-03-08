@@ -47,7 +47,7 @@ export function EditMode(): JSX.Element {
                 )}
                 {isEditing && (
                     <Form.Check
-                        type="switch"
+                        type="checkbox"
                         id="is-student"
                         label="Set Student:"
                         checked={isStudent}

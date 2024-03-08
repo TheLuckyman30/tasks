@@ -18,18 +18,18 @@ PASS src/components/StartAttempt.test.tsx
 PASS src/form-components/MultipleChoiceQuestion.test.tsx
 PASS src/components/TwoDice.test.tsx
 PASS src/functions.test.ts
-PASS src/bad-components/DoubleHalf.test.tsx
 PASS src/bad-components/ChooseTeam.test.tsx
-PASS src/form-components/EditMode.test.tsx
+PASS src/bad-components/DoubleHalf.test.tsx
 PASS src/form-components/CheckAnswer.test.tsx
 PASS src/components/ChangeType.test.tsx
+PASS src/form-components/EditMode.test.tsx
 PASS src/components/CycleHoliday.test.tsx
-PASS src/form-components/ChangeColor.test.tsx
 PASS src/form-components/GiveAttempts.test.tsx
-PASS src/components/RevealAnswer.test.tsx
 PASS src/components/Counter.test.tsx
-PASS src/bad-components/ColoredBox.test.tsx
+PASS src/form-components/ChangeColor.test.tsx
+PASS src/components/RevealAnswer.test.tsx
 PASS src/bad-components/ShoveBox.test.tsx
+PASS src/bad-components/ColoredBox.test.tsx
 PASS src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
@@ -68,5 +68,5 @@ All files                    |   99.04 |    98.05 |     100 |   99.02 |
 Test Suites: 20 passed, 20 total
 Tests:       134 passed, 134 total
 Snapshots:   0 total
-Time:        7.491 s
+Time:        8.043 s
 Ran all test suites.
